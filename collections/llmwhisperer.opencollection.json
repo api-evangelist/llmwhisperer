@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLMWhisperer API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "unstract-key",
+        "value": "{{unstractKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extraction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a document for text extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper?mode=form&output_mode=layout_preserving&page_seperator=<<<&lang=eng&tag=default&add_line_nos=false&url_in_post=false",
+            "body": {
+              "type": "binary",
+              "data": ""
+            }
+          },
+          "docs": "Converts a document to text asynchronously. Send the document as binary (or a URL when url_in_post=true). Returns 202 with a whisper_hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check the status of a whisper job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-status?"
+          },
+          "docs": "Returns the processing state (accepted, processing, processed, error, retrieved) for a whisper_hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Retrieve",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the extracted text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-retrieve?text_only=false"
+          },
+          "docs": "Returns result_text and optional metadata for a processed whisper_hash. Retrievable once."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Highlights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve per-line bounding-box coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/highlights?lines=1-5,7,21-"
+          },
+          "docs": "Returns per-line bounding-box metadata for the requested lines."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a webhook callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"url\": \"https://example.com/webhook\",\n  \"auth_token\": \"\",\n  \"webhook_name\": \"my-webhook\"\n}"
+            }
+          },
+          "docs": "Registers a webhook that receives the extracted result on completion."
+        },
+        {
+          "info": {
+            "name": "Retrieve a registered webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback?webhook_name=my-webhook"
+          },
+          "docs": "Retrieves details for a registered webhook."
+        },
+        {
+          "info": {
+            "name": "Update a registered webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"url\": \"https://example.com/webhook\",\n  \"auth_token\": \"\",\n  \"webhook_name\": \"my-webhook\"\n}"
+            }
+          },
+          "docs": "Updates a registered webhook."
+        },
+        {
+          "info": {
+            "name": "Delete a registered webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback?webhook_name=my-webhook"
+          },
+          "docs": "Deletes a registered webhook."
+        }
+      ]
+    }
+  ]
+}

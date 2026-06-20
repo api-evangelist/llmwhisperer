@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: LLMWhisperer
+providerId: llmwhisperer
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Document Extraction
+- OCR
+- Text Extraction
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  LLMWhisperer meters usage by pages processed. The free tier caps usage at
+  100 pages per day; paid pay-as-you-go usage is billed per 1,000 pages with
+  no documented hard request-per-minute cap published in the public API
+  reference. Extraction is asynchronous, so callers submit to /whisper and poll
+  /whisper-status (or use webhooks) rather than holding a synchronous
+  connection. Specific per-account concurrency and request-rate limits are not
+  reconciled in this artifact.
+notes: >-
+  The 100 pages/day cap is the documented free-tier quota. Verify any
+  per-account request-rate, concurrency, or burst limits with Unstract support
+  or the dashboard during reconciliation; recommended polling interval and
+  backoff should be confirmed against the docs.
+sources:
+- https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_apis_intro/
+- https://unstract.com/pricing/
+responseCodes:
+  throttled: 429
+limits:
+- name: Free Tier Daily Pages
+  scope: account
+  metric: pages
+  limit: 100
+  notes: Free plan processes up to 100 pages per day; paid usage removes this cap.
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No public per-minute request cap documented; verify with Unstract.
+- name: Concurrency
+  scope: account
+  metric: jobs
+  limit: see provider documentation
+  notes: Concurrent in-flight whisper jobs per account; not publicly documented.
+policies:
+- name: Asynchronous Processing
+  description: Submit to /whisper, then poll /whisper-status or register a webhook; do not hold a synchronous connection.
+- name: Polling Backoff
+  description: Poll /whisper-status at a reasonable interval and honor Retry-After / 429 responses with exponential backoff.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

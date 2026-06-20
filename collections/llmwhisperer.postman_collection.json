@@ -1,0 +1,450 @@
+{
+  "item": [
+    {
+      "id": "0930043c-bf83-4b53-b257-a22ae8d096f5",
+      "name": "Extraction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3f49900-e694-4453-82a6-4f4a4e5a5b71",
+          "name": "Submit a document for text extraction",
+          "request": {
+            "name": "Submit a document for text extraction",
+            "description": {
+              "content": "Converts a document to text asynchronously. Send the document as binary (or a URL when url_in_post=true). Returns 202 with a whisper_hash.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper",
+              "path": [
+                "whisper"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "form"
+                },
+                {
+                  "key": "output_mode",
+                  "value": "layout_preserving"
+                },
+                {
+                  "key": "page_seperator",
+                  "value": "<<<"
+                },
+                {
+                  "key": "pages_to_extract",
+                  "value": ""
+                },
+                {
+                  "key": "lang",
+                  "value": "eng"
+                },
+                {
+                  "key": "tag",
+                  "value": "default"
+                },
+                {
+                  "key": "use_webhook",
+                  "value": ""
+                },
+                {
+                  "key": "add_line_nos",
+                  "value": "false"
+                },
+                {
+                  "key": "url_in_post",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": "/path/to/document.pdf"
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "f8b8252f-61ef-4b9e-b9b6-0bb5d672b7ce",
+      "name": "Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9226530d-5082-4769-adfb-b18fb2eba70d",
+          "name": "Check the status of a whisper job",
+          "request": {
+            "name": "Check the status of a whisper job",
+            "description": {
+              "content": "Returns the processing state (accepted, processing, processed, error, retrieved) for a whisper_hash.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-status",
+              "path": [
+                "whisper-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "whisper_hash",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "ab5665a6-d171-46b9-9f21-d812c9decca8",
+      "name": "Retrieve",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2eda47bd-0102-49ec-bc1c-d09700c3b962",
+          "name": "Retrieve the extracted text",
+          "request": {
+            "name": "Retrieve the extracted text",
+            "description": {
+              "content": "Returns result_text and optional metadata for a processed whisper_hash. Retrievable once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-retrieve",
+              "path": [
+                "whisper-retrieve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "whisper_hash",
+                  "value": ""
+                },
+                {
+                  "key": "text_only",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "c9b50fe8-eb8d-49f0-a62c-7f242c92b322",
+      "name": "Highlights",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a1765d8-457c-4b3b-ba05-5e62408331ed",
+          "name": "Retrieve per-line bounding-box coordinates",
+          "request": {
+            "name": "Retrieve per-line bounding-box coordinates",
+            "description": {
+              "content": "Returns per-line bounding-box metadata for the requested lines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/highlights",
+              "path": [
+                "highlights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "whisper_hash",
+                  "value": ""
+                },
+                {
+                  "key": "lines",
+                  "value": "1-5,7,21-"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "4557560e-de35-4fff-b856-d7131b2380b5",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "108991d8-1ffc-45c0-a3e7-8f2066eb64b5",
+          "name": "Register a webhook callback",
+          "request": {
+            "name": "Register a webhook callback",
+            "description": {
+              "content": "Registers a webhook that receives the extracted result on completion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+              "path": [
+                "whisper-manage-callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/webhook\",\n  \"auth_token\": \"\",\n  \"webhook_name\": \"my-webhook\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a2c96292-af4c-418b-8c3a-9b098389060b",
+          "name": "Retrieve a registered webhook",
+          "request": {
+            "name": "Retrieve a registered webhook",
+            "description": {
+              "content": "Retrieves details for a registered webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+              "path": [
+                "whisper-manage-callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "webhook_name",
+                  "value": "my-webhook"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "abbb4e1f-9417-4fcf-b19e-2d7257a686b7",
+          "name": "Update a registered webhook",
+          "request": {
+            "name": "Update a registered webhook",
+            "description": {
+              "content": "Updates a registered webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+              "path": [
+                "whisper-manage-callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/webhook\",\n  \"auth_token\": \"\",\n  \"webhook_name\": \"my-webhook\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "7aaff39f-8593-4166-bdec-9f66904db6be",
+          "name": "Delete a registered webhook",
+          "request": {
+            "name": "Delete a registered webhook",
+            "description": {
+              "content": "Deletes a registered webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "raw": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+              "path": [
+                "whisper-manage-callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "webhook_name",
+                  "value": "my-webhook"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "unstract-key",
+                "value": "{{unstractKey}}"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://llmwhisperer-api.us-central.unstract.com/api/v2",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "YOUR_API_KEY",
+      "key": "unstractKey"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "unstract-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{unstractKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0932a8e7-f47c-4819-b5b0-7a9018c76ed9",
+    "name": "LLMWhisperer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LLMWhisperer document-to-text extraction API (v2) by Unstract (Zipstack).\n\nContact: https://unstract.com/llmwhisperer/",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+aid: llmwhisperer
+name: LLMWhisperer
+review:
+  question: Does LLMWhisperer expose a documented public WebSocket or streaming (AsyncAPI) API surface?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    LLMWhisperer's v2 API is asynchronous in workflow (submit / poll /
+    retrieve) but the transport is plain HTTPS REST. Completion can be
+    delivered via an outbound HTTP webhook callback (POST to a
+    customer-registered URL), which is a fire-and-forget HTTP request, not a
+    persistent event stream. No WebSocket (ws:// / wss://) and no Server-Sent
+    Events (SSE) surface is documented, so no AsyncAPI document was authored.
+    The webhook contract is modeled in the OpenAPI document under
+    /whisper-manage-callback.
+findings:
+  summary: |
+    LLMWhisperer (Unstract / Zipstack) publishes a documented asynchronous
+    REST API (v2) under https://llmwhisperer-api.us-central.unstract.com/api/v2
+    (and an eu-west region). The async pattern is request/poll: POST /whisper
+    returns 202 with a whisper_hash, GET /whisper-status reports progress
+    (accepted, processing, processed, error, retrieved), and GET
+    /whisper-retrieve returns the extracted text once. As an alternative to
+    polling, callers register a webhook via POST /whisper-manage-callback and
+    submit a document with use_webhook so the result is POSTed to their
+    endpoint. GET /highlights returns per-line bounding-box coordinates.
+    Authentication is via the unstract-key header. No WebSocket or SSE
+    streaming transport is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Outbound HTTP POST callback to a customer-registered URL on job completion; not a persistent stream.
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events surface is documented; status is obtained by polling /whisper-status.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the LLMWhisperer v2 API reference.
+  endpointsConfirmedRest:
+    - POST   https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper
+    - GET    https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-status
+    - GET    https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-retrieve
+    - GET    https://llmwhisperer-api.us-central.unstract.com/api/v2/highlights
+    - POST   https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback
+    - GET    https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback
+    - PUT    https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback
+    - DELETE https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback
+  asyncPattern:
+    style: submit-poll-retrieve
+    submit: POST /whisper returns 202 + whisper_hash
+    poll: GET /whisper-status?whisper_hash=... until status=processed
+    retrieve: GET /whisper-retrieve?whisper_hash=... (once)
+    callbackAlternative: register webhook via /whisper-manage-callback, submit with use_webhook
+sources:
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_apis_intro/
+    type: APIReference
+    note: Lists v2 base URLs, unstract-key auth, and the full endpoint set including polling vs callback workflows.
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/
+    type: Documentation
+    note: POST /whisper parameters and 202 response with whisper_hash.
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_webhooks_manage/
+    type: Documentation
+    note: Webhook registration via /whisper-manage-callback; HTTP POST callback, no streaming transport.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    The API is asynchronous in workflow but exposes no WebSocket or SSE
+    streaming transport, so no AsyncAPI document was authored. The async
+    submit/poll/retrieve flow and the webhook callback contract are captured
+    in the OpenAPI document and described here.

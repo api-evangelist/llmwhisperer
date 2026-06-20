@@ -1,0 +1,147 @@
+aid: llmwhisperer
+url: https://raw.githubusercontent.com/api-evangelist/llmwhisperer/refs/heads/main/apis.yml
+name: LLMWhisperer
+kind: company
+description: LLMWhisperer is a document-to-text extraction API from Unstract (Zipstack)
+  that turns complex PDFs, scanned documents, and images into clean, layout-preserving
+  text ready for large language models. It exposes an asynchronous REST API (v2) -
+  submit a document to /whisper, poll /whisper-status, then retrieve the extracted
+  text via /whisper-retrieve - plus line-level highlight coordinates and webhook
+  callbacks. Authentication is via the unstract-key header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- LLM
+- Document Extraction
+- OCR
+- Text Extraction
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: llmwhisperer:whisper-extraction-api
+  name: LLMWhisperer Whisper Extraction API
+  tags:
+  - Extraction
+  - OCR
+  - Layout Preserving
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/
+  baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  properties:
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/
+    type: Documentation
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_apis_intro/
+    type: APIReference
+  - url: openapi/llmwhisperer-openapi.yml
+    type: OpenAPI
+  - url: collections/llmwhisperer.postman_collection.json
+    type: PostmanCollection
+  - url: collections/llmwhisperer.opencollection.json
+    type: OpenCollection
+  description: Submits a document (PDF, image, or URL) to POST /whisper for asynchronous,
+    layout-preserving text extraction across native_text, low_cost, high_quality,
+    form, and table modes. Returns a 202 with a whisper_hash used to track and
+    retrieve the job.
+- aid: llmwhisperer:whisper-status-api
+  name: LLMWhisperer Whisper Status API
+  tags:
+  - Status
+  - Async
+  - Polling
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_status_api/
+  baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  properties:
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_status_api/
+    type: Documentation
+  - url: openapi/llmwhisperer-openapi.yml
+    type: OpenAPI
+  - url: collections/llmwhisperer.postman_collection.json
+    type: PostmanCollection
+  - url: collections/llmwhisperer.opencollection.json
+    type: OpenCollection
+  description: GET /whisper-status returns the processing state (accepted, processing,
+    processed, error, retrieved) for a whisper_hash, with per-page execution detail.
+- aid: llmwhisperer:whisper-retrieve-api
+  name: LLMWhisperer Whisper Retrieve API
+  tags:
+  - Retrieve
+  - Results
+  - Text
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_retrieve_api/
+  baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  properties:
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_retrieve_api/
+    type: Documentation
+  - url: openapi/llmwhisperer-openapi.yml
+    type: OpenAPI
+  - url: collections/llmwhisperer.postman_collection.json
+    type: PostmanCollection
+  - url: collections/llmwhisperer.opencollection.json
+    type: OpenCollection
+  description: GET /whisper-retrieve returns the extracted result_text plus optional
+    confidence_metadata for a processed whisper_hash. Results can be retrieved once.
+- aid: llmwhisperer:highlights-api
+  name: LLMWhisperer Highlights API
+  tags:
+  - Highlights
+  - Bounding Box
+  - Coordinates
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_highlighting_api/
+  baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  properties:
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_highlighting_api/
+    type: Documentation
+  - url: openapi/llmwhisperer-openapi.yml
+    type: OpenAPI
+  - url: collections/llmwhisperer.postman_collection.json
+    type: PostmanCollection
+  - url: collections/llmwhisperer.opencollection.json
+    type: OpenCollection
+  description: GET /highlights returns per-line bounding-box coordinates (base_y,
+    height, page, page_height) for the requested lines so callers can highlight
+    extracted text in the source document.
+- aid: llmwhisperer:webhooks-api
+  name: LLMWhisperer Webhooks API
+  tags:
+  - Webhooks
+  - Callbacks
+  - Async
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_webhooks_manage/
+  baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  properties:
+  - url: https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_webhooks_manage/
+    type: Documentation
+  - url: openapi/llmwhisperer-openapi.yml
+    type: OpenAPI
+  - url: review.yml
+    type: Review
+  - url: collections/llmwhisperer.postman_collection.json
+    type: PostmanCollection
+  - url: collections/llmwhisperer.opencollection.json
+    type: OpenCollection
+  description: Register and manage webhook callbacks via /whisper-manage-callback
+    (POST/GET/PUT/DELETE). Submit a document with use_webhook to have the extracted
+    result delivered to your endpoint instead of polling.
+common:
+- type: GitHubOrganization
+  url: https://github.com/Zipstack
+- type: LinkedIn
+  url: https://www.linkedin.com/company/unstract
+- type: Website
+  url: https://unstract.com/llmwhisperer/
+- type: Documentation
+  url: https://docs.unstract.com/llmwhisperer/
+- type: Plans
+  url: plans/llmwhisperer-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/llmwhisperer-rate-limits.yml
+- type: FinOps
+  url: finops/llmwhisperer-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

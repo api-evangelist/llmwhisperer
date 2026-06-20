@@ -1,0 +1,106 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: LLMWhisperer
+providerId: llmwhisperer
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- AI
+- LLM
+- Document Extraction
+- OCR
+- Text Extraction
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of LLMWhisperer spend. LLMWhisperer bills usage-based per-page
+  rates that vary by extraction mode (native_text, low_cost, high_quality,
+  form/table), with a free allowance of 100 pages per day. Cost is driven by
+  the number of pages processed and the mode selected, so the primary
+  optimization levers are choosing the lowest sufficient mode and limiting
+  pages_to_extract to only the pages needed.
+notes: >-
+  Per-mode per-page rates are subject to change; verify against the Unstract /
+  LLMWhisperer pricing page during reconciliation.
+sources:
+- https://unstract.com/pricing/
+- https://unstract.com/llmwhisperer/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Unstract
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: LLMWhisperer
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Unstract
+  PublisherName: Unstract
+  InvoiceIssuerName: Unstract
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: pages_native_text
+  description: Pages processed in native_text mode, billed per 1,000 pages.
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+  - mode
+  - tag
+- name: pages_low_cost
+  description: Pages processed in low_cost mode, billed per 1,000 pages.
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+  - mode
+  - tag
+- name: pages_high_quality
+  description: Pages processed in high_quality mode, billed per 1,000 pages.
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+  - mode
+  - tag
+- name: pages_high_quality_form
+  description: Pages processed in high_quality with form/table elements, billed per 1,000 pages (highest rate).
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+  - mode
+  - tag
+- name: free_pages
+  description: Pages consumed under the free 100-pages/day allowance.
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Use the tag parameter and the usage / get-usage-info endpoints to attribute pages per workload.
+- name: Allocation
+  description: Tag whisper requests per team or document type; map tags to internal cost centers.
+- name: Optimization
+  description: Pick the lowest sufficient mode (native_text for digital PDFs); use pages_to_extract to avoid processing unneeded pages; stay within the free daily allowance where possible.
+- name: Accountability
+  description: Assign owners per tag/workload and review page burn monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

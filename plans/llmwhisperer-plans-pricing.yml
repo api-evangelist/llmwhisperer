@@ -1,0 +1,131 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: LLMWhisperer
+providerId: llmwhisperer
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- AI
+- LLM
+- Document Extraction
+- OCR
+- Text Extraction
+- Plans
+description: >-
+  LLMWhisperer uses simple pay-as-you-go pricing metered by pages processed,
+  with no flat monthly fee or upfront commitment. A free tier processes up to
+  100 pages per day at no cost and requires no credit card. Paid usage is
+  priced per 1,000 pages and varies by extraction mode, ranging from roughly
+  $1 per 1,000 pages (native_text) up to roughly $15 per 1,000 pages (high
+  quality with form/table elements). Self-hosted / on-premise deployment is
+  available via an Enterprise plan.
+notes: >-
+  Per-mode per-page rates are as published on the Unstract / LLMWhisperer
+  pricing page; verify the current free-tier allowance and exact per-mode
+  rates on the pricing page during reconciliation.
+sources:
+- https://unstract.com/pricing/
+- https://unstract.com/llmwhisperer/
+- https://docs.unstract.com/llmwhisperer/
+plans:
+- id: llmwhisperer-free
+  name: Free
+  type: free
+  description: >-
+    Process up to 100 pages per day at no cost. No credit card required.
+  entries:
+  - label: Free Pages
+    name: free_pages
+    type: free
+    metric: pages
+    limit: 100
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: $0.00
+    userMultiplied: false
+  elements:
+  - name: Whisper Extraction
+  - name: Whisper Status
+  - name: Whisper Retrieve
+  - name: Highlights
+  - name: Webhooks
+- id: llmwhisperer-pay-as-you-go
+  name: Pay-as-you-go
+  type: usage
+  description: >-
+    Per-page usage billing across the four extraction modes with no monthly
+    minimum.
+  entries:
+  - label: Native Text
+    name: native_text
+    type: usage
+    metric: pages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: from ~$1 per 1,000 pages
+    userMultiplied: false
+  - label: Low Cost
+    name: low_cost
+    type: usage
+    metric: pages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: see pricing page (per 1,000 pages)
+    userMultiplied: false
+  - label: High Quality
+    name: high_quality
+    type: usage
+    metric: pages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: see pricing page (per 1,000 pages)
+    userMultiplied: false
+  - label: High Quality with Form / Table Elements
+    name: high_quality_form
+    type: usage
+    metric: pages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: up to ~$15 per 1,000 pages
+    userMultiplied: false
+  elements:
+  - name: Whisper Extraction
+  - name: Whisper Status
+  - name: Whisper Retrieve
+  - name: Highlights
+  - name: Webhooks
+- id: llmwhisperer-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Self-hosted / on-premise deployment of LLMWhisperer, volume pricing,
+    dedicated support, and negotiated terms. Contact Unstract sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Self-Hosted / On-Premise
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
