@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/llmwhisperer-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: unstractKey
+  type: apiKey
+  in: header
+  parameter: unstract-key
+  description: LLMWhisperer API key passed in the unstract-key request header.
+  sources:
+  - openapi/llmwhisperer-openapi.yml

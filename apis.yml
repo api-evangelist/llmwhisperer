@@ -128,6 +128,10 @@ apis:
     (POST/GET/PUT/DELETE). Submit a document with use_webhook to have the extracted
     result delivered to your endpoint instead of polling.
 common:
+- type: DomainSecurity
+  url: security/llmwhisperer-domain-security.yml
+- type: Authentication
+  url: authentication/llmwhisperer-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/Zipstack
 - type: LinkedIn
@@ -142,6 +146,8 @@ common:
   url: rate-limits/llmwhisperer-rate-limits.yml
 - type: FinOps
   url: finops/llmwhisperer-finops.yml
+- url: https://unstract.com/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
