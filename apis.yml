@@ -128,6 +128,8 @@ apis:
     (POST/GET/PUT/DELETE). Submit a document with use_webhook to have the extracted
     result delivered to your endpoint instead of polling.
 common:
+- type: AgenticAccess
+  url: agentic-access/llmwhisperer-agentic-access.yml
 - type: DomainSecurity
   url: security/llmwhisperer-domain-security.yml
 - type: Authentication
