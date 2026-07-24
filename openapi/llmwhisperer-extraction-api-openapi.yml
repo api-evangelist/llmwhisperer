@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: LLMWhisperer Extraction API
+  description: 'LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.'
+  termsOfService: https://unstract.com/terms-of-service/
+  contact:
+    name: Unstract Support
+    url: https://unstract.com/llmwhisperer/
+  version: '2.0'
+servers:
+- url: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  description: US Central region
+- url: https://llmwhisperer-api.eu-west.unstract.com/api/v2
+  description: EU West region
+security:
+- unstractKey: []
+tags:
+- name: Extraction
+paths:
+  /whisper:
+    post:
+      operationId: whisper
+      tags:
+      - Extraction
+      summary: Submit a document for text extraction
+      description: Converts a document to text. Accepts the raw document as binary (application/octet-stream) or, when url_in_post is true, a URL in the request body. Processing is asynchronous; a whisper_hash is returned to track and retrieve the job.
+      parameters:
+      - name: mode
+        in: query
+        description: Extraction mode.
+        schema:
+          type: string
+          enum:
+          - native_text
+          - low_cost
+          - high_quality
+          - form
+          - table
+          default: form
+      - name: output_mode
+        in: query
+        description: Output formatting mode.
+        schema:
+          type: string
+          enum:
+          - layout_preserving
+          - text
+          default: layout_preserving
+      - name: page_seperator
+        in: query
+        description: Page delimiter string inserted between pages.
+        schema:
+          type: string
+          default: <<<
+      - name: pages_to_extract
+        in: query
+        description: Pages to extract, e.g. "1-5,7,21-".
+        schema:
+          type: string
+      - name: median_filter_size
+        in: query
+        description: Median filter size for low_cost mode noise removal.
+        schema:
+          type: integer
+          default: 0
+      - name: gaussian_blur_radius
+        in: query
+        description: Gaussian blur radius for low_cost mode noise removal.
+        schema:
+          type: number
+          default: 0
+      - name: line_splitter_tolerance
+        in: query
+        description: Baseline factor for line splitting (fraction of line height).
+        schema:
+          type: number
+          default: 0.4
+      - name: line_splitter_strategy
+        in: query
+        description: Line splitting strategy.
+        schema:
+          type: string
+          default: left-priority
+      - name: horizontal_stretch_factor
+        in: query
+        description: Horizontal stretch factor for multi-column layout adjustment.
+        schema:
+          type: number
+          default: 1.0
+      - name: url_in_post
+        in: query
+        description: When true, the request body is a document URL instead of binary data.
+        schema:
+          type: boolean
+          default: false
+      - name: mark_vertical_lines
+        in: query
+        description: Reproduce vertical layout lines in the output.
+        schema:
+          type: boolean
+          default: false
+      - name: mark_horizontal_lines
+        in: query
+        description: Reproduce horizontal layout lines in the output.
+        schema:
+          type: boolean
+          default: false
+      - name: lang
+        in: query
+        description: Language hint for OCR (ISO 639-2/B, e.g. eng).
+        schema:
+          type: string
+          default: eng
+      - name: tag
+        in: query
+        description: Auditing label associated with the request.
+        schema:
+          type: string
+          default: default
+      - name: file_name
+        in: query
+        description: Auditing reference file name.
+        schema:
+          type: string
+      - name: use_webhook
+        in: query
+        description: Name of a registered webhook to deliver the result to.
+        schema:
+          type: string
+      - name: webhook_metadata
+        in: query
+        description: Metadata echoed back to the webhook with the result.
+        schema:
+          type: string
+      - name: add_line_nos
+        in: query
+        description: Enable line numbering and persist line metadata for highlights.
+        schema:
+          type: boolean
+          default: false
+      - name: allow_rotated_text
+        in: query
+        description: Include rotated/angled text in extraction.
+        schema:
+          type: boolean
+          default: true
+      - name: word_confidence_threshold
+        in: query
+        description: OCR word confidence filter (0-1).
+        schema:
+          type: number
+          default: 0.3
+      requestBody:
+        required: true
+        description: Document binary, or a document URL when url_in_post is true.
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '202':
+          description: Whisper job accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhisperAccepted'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    WhisperAccepted:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Whisper Job Accepted
+        status:
+          type: string
+          example: processing
+        whisper_hash:
+          type: string
+          example: xxxxx|xxx
+  securitySchemes:
+    unstractKey:
+      type: apiKey
+      in: header
+      name: unstract-key
+      description: LLMWhisperer API key passed in the unstract-key request header.

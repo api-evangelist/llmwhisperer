@@ -1,0 +1,115 @@
+openapi: 3.0.1
+info:
+  title: LLMWhisperer Extraction Webhooks API
+  description: 'LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.'
+  termsOfService: https://unstract.com/terms-of-service/
+  contact:
+    name: Unstract Support
+    url: https://unstract.com/llmwhisperer/
+  version: '2.0'
+servers:
+- url: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  description: US Central region
+- url: https://llmwhisperer-api.eu-west.unstract.com/api/v2
+  description: EU West region
+security:
+- unstractKey: []
+tags:
+- name: Webhooks
+paths:
+  /whisper-manage-callback:
+    post:
+      operationId: registerWebhook
+      tags:
+      - Webhooks
+      summary: Register a webhook callback
+      description: Registers a webhook the service calls with the extracted result when a document submitted with use_webhook finishes processing. A test payload with result_text "WEBHOOK_TEST" is sent on registration.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookConfig'
+      responses:
+        '201':
+          description: Webhook registered.
+        '400':
+          description: Registration failed (e.g. endpoint unreachable).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: getWebhook
+      tags:
+      - Webhooks
+      summary: Retrieve a registered webhook
+      parameters:
+      - name: webhook_name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookConfig'
+    put:
+      operationId: updateWebhook
+      tags:
+      - Webhooks
+      summary: Update a registered webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookConfig'
+      responses:
+        '200':
+          description: Webhook updated.
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a registered webhook
+      parameters:
+      - name: webhook_name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook deleted.
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    WebhookConfig:
+      type: object
+      required:
+      - url
+      - webhook_name
+      properties:
+        url:
+          type: string
+          description: Destination URL the result is POSTed to.
+        auth_token:
+          type: string
+          description: Optional bearer token sent to the webhook endpoint.
+        webhook_name:
+          type: string
+          description: Identifier used to reference this webhook in use_webhook.
+  securitySchemes:
+    unstractKey:
+      type: apiKey
+      in: header
+      name: unstract-key
+      description: LLMWhisperer API key passed in the unstract-key request header.

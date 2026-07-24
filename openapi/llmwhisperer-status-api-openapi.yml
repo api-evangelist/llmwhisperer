@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  title: LLMWhisperer Extraction Status API
+  description: 'LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.'
+  termsOfService: https://unstract.com/terms-of-service/
+  contact:
+    name: Unstract Support
+    url: https://unstract.com/llmwhisperer/
+  version: '2.0'
+servers:
+- url: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  description: US Central region
+- url: https://llmwhisperer-api.eu-west.unstract.com/api/v2
+  description: EU West region
+security:
+- unstractKey: []
+tags:
+- name: Status
+paths:
+  /whisper-status:
+    get:
+      operationId: whisperStatus
+      tags:
+      - Status
+      summary: Check the status of a whisper job
+      parameters:
+      - name: whisper_hash
+        in: query
+        required: true
+        description: The whisper hash returned when the whisper job was started.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Current status of the whisper job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhisperStatus'
+        '400':
+          description: Whisper job not found for the provided whisper hash.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    WhisperStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - accepted
+          - processing
+          - processed
+          - error
+          - retrieved
+        message:
+          type: string
+        detail:
+          type: array
+          items:
+            type: object
+            properties:
+              page_no:
+                type: integer
+              message:
+                type: string
+              execution_time_in_seconds:
+                type: number
+  securitySchemes:
+    unstractKey:
+      type: apiKey
+      in: header
+      name: unstract-key
+      description: LLMWhisperer API key passed in the unstract-key request header.

@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: LLMWhisperer Extraction Highlights API
+  description: 'LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.'
+  termsOfService: https://unstract.com/terms-of-service/
+  contact:
+    name: Unstract Support
+    url: https://unstract.com/llmwhisperer/
+  version: '2.0'
+servers:
+- url: https://llmwhisperer-api.us-central.unstract.com/api/v2
+  description: US Central region
+- url: https://llmwhisperer-api.eu-west.unstract.com/api/v2
+  description: EU West region
+security:
+- unstractKey: []
+tags:
+- name: Highlights
+paths:
+  /highlights:
+    get:
+      operationId: highlights
+      tags:
+      - Highlights
+      summary: Retrieve per-line bounding-box coordinates
+      description: Returns bounding-box metadata for the requested lines so callers can highlight extracted text in the source document. Requires the whisper job to have been submitted with add_line_nos enabled.
+      parameters:
+      - name: whisper_hash
+        in: query
+        required: true
+        description: The whisper hash returned when the whisper job was started.
+        schema:
+          type: string
+      - name: lines
+        in: query
+        required: true
+        description: Lines to retrieve, e.g. "1-5,7,21-".
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Map of line number to bounding-box metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighlightsResponse'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    HighlightLine:
+      type: object
+      properties:
+        base_y:
+          type: integer
+        base_y_percent:
+          type: number
+        height:
+          type: integer
+        height_percent:
+          type: number
+        page:
+          type: integer
+        page_height:
+          type: integer
+        raw:
+          type: array
+          description: '[page_no, y, height, page_height]'
+          items:
+            type: integer
+    HighlightsResponse:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/HighlightLine'
+  securitySchemes:
+    unstractKey:
+      type: apiKey
+      in: header
+      name: unstract-key
+      description: LLMWhisperer API key passed in the unstract-key request header.
