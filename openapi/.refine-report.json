@@ -1,0 +1,22 @@
+{
+  "provider": "llmwhisperer",
+  "sources": [
+    "llmwhisperer-extraction-api-openapi.yml",
+    "llmwhisperer-highlights-api-openapi.yml",
+    "llmwhisperer-retrieve-api-openapi.yml",
+    "llmwhisperer-status-api-openapi.yml",
+    "llmwhisperer-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "llmwhisperer-extraction-api-openapi.yml",
+    "llmwhisperer-highlights-api-openapi.yml",
+    "llmwhisperer-retrieve-api-openapi.yml",
+    "llmwhisperer-status-api-openapi.yml",
+    "llmwhisperer-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
