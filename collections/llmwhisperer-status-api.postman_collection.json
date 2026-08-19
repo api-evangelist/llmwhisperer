@@ -1,0 +1,184 @@
+{
+  "item": [
+    {
+      "id": "2405fc9f-7212-4495-b650-edd0164572d9",
+      "name": "Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83623023-937e-4b1e-bf60-8a917498f75f",
+          "name": "Check the status of a whisper job",
+          "request": {
+            "name": "Check the status of a whisper job",
+            "description": {},
+            "url": {
+              "path": [
+                "whisper-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "whisper_hash",
+                  "value": "<string>",
+                  "description": "(Required) The whisper hash returned when the whisper job was started."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70bf1514-ff16-49ed-8a54-b33132101816",
+              "name": "Current status of the whisper job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"accepted\",\n  \"message\": \"string\",\n  \"detail\": [\n    {\n      \"page_no\": 7059,\n      \"message\": \"string\",\n      \"execution_time_in_seconds\": 7276.435952194429\n    },\n    {\n      \"page_no\": 7067,\n      \"message\": \"string\",\n      \"execution_time_in_seconds\": 6261.361205727975\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "194fce56-e624-4a5f-b0c5-204b752a5a5a",
+              "name": "Whisper job not found for the provided whisper hash.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://llmwhisperer-api.us-central.unstract.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "unstract-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f69a0d52-7bf2-423a-bbb5-475f74d72e4d",
+    "name": "LLMWhisperer Extraction Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.\n\nContact Support:\n Name: Unstract Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLMWhisperer Extraction Retrieve API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "unstract-key",
+      "value": "{{unstract-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieve",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the extracted text of a processed whisper job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-retrieve",
+            "params": [
+              {
+                "name": "whisper_hash",
+                "value": "",
+                "type": "query",
+                "description": "The whisper hash returned when the whisper job was started."
+              },
+              {
+                "name": "text_only",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns only the extracted text without metadata."
+              }
+            ]
+          },
+          "docs": "Returns the extracted text once the job is processed. For security and privacy, the extracted text can be retrieved only once."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

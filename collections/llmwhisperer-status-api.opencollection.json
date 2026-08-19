@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLMWhisperer Extraction Status API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "unstract-key",
+      "value": "{{unstract-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check the status of a whisper job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-status",
+            "params": [
+              {
+                "name": "whisper_hash",
+                "value": "",
+                "type": "query",
+                "description": "The whisper hash returned when the whisper job was started."
+              }
+            ]
+          },
+          "docs": "Check the status of a whisper job"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

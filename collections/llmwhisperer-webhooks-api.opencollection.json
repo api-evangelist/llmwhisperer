@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLMWhisperer Extraction Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "unstract-key",
+      "value": "{{unstract-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a registered webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+            "params": [
+              {
+                "name": "webhook_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a registered webhook"
+        },
+        {
+          "info": {
+            "name": "Register a webhook callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a webhook the service calls with the extracted result when a document submitted with use_webhook finishes processing. A test payload with result_text \"WEBHOOK_TEST\" is sent on registration."
+        },
+        {
+          "info": {
+            "name": "Update a registered webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a registered webhook"
+        },
+        {
+          "info": {
+            "name": "Delete a registered webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper-manage-callback",
+            "params": [
+              {
+                "name": "webhook_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete a registered webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,467 @@
+{
+  "item": [
+    {
+      "id": "1297deac-caf6-4abe-bb60-90bdd5757be6",
+      "name": "Extraction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57e68a91-dcfc-4e21-80f9-8ab0c770b682",
+          "name": "Submit a document for text extraction",
+          "request": {
+            "name": "Submit a document for text extraction",
+            "description": {
+              "content": "Converts a document to text. Accepts the raw document as binary (application/octet-stream) or, when url_in_post is true, a URL in the request body. Processing is asynchronous; a whisper_hash is returned to track and retrieve the job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whisper"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "form",
+                  "description": "Extraction mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "layout_preserving",
+                  "description": "Output formatting mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_seperator",
+                  "value": "<<<",
+                  "description": "Page delimiter string inserted between pages."
+                },
+                {
+                  "disabled": false,
+                  "key": "pages_to_extract",
+                  "value": "<string>",
+                  "description": "Pages to extract, e.g. \"1-5,7,21-\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "median_filter_size",
+                  "value": "0",
+                  "description": "Median filter size for low_cost mode noise removal."
+                },
+                {
+                  "disabled": false,
+                  "key": "gaussian_blur_radius",
+                  "value": "0",
+                  "description": "Gaussian blur radius for low_cost mode noise removal."
+                },
+                {
+                  "disabled": false,
+                  "key": "line_splitter_tolerance",
+                  "value": "0.4",
+                  "description": "Baseline factor for line splitting (fraction of line height)."
+                },
+                {
+                  "disabled": false,
+                  "key": "line_splitter_strategy",
+                  "value": "left-priority",
+                  "description": "Line splitting strategy."
+                },
+                {
+                  "disabled": false,
+                  "key": "horizontal_stretch_factor",
+                  "value": "1",
+                  "description": "Horizontal stretch factor for multi-column layout adjustment."
+                },
+                {
+                  "disabled": false,
+                  "key": "url_in_post",
+                  "value": "false",
+                  "description": "When true, the request body is a document URL instead of binary data."
+                },
+                {
+                  "disabled": false,
+                  "key": "mark_vertical_lines",
+                  "value": "false",
+                  "description": "Reproduce vertical layout lines in the output."
+                },
+                {
+                  "disabled": false,
+                  "key": "mark_horizontal_lines",
+                  "value": "false",
+                  "description": "Reproduce horizontal layout lines in the output."
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "eng",
+                  "description": "Language hint for OCR (ISO 639-2/B, e.g. eng)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "default",
+                  "description": "Auditing label associated with the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "file_name",
+                  "value": "<string>",
+                  "description": "Auditing reference file name."
+                },
+                {
+                  "disabled": false,
+                  "key": "use_webhook",
+                  "value": "<string>",
+                  "description": "Name of a registered webhook to deliver the result to."
+                },
+                {
+                  "disabled": false,
+                  "key": "webhook_metadata",
+                  "value": "<string>",
+                  "description": "Metadata echoed back to the webhook with the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "add_line_nos",
+                  "value": "false",
+                  "description": "Enable line numbering and persist line metadata for highlights."
+                },
+                {
+                  "disabled": false,
+                  "key": "allow_rotated_text",
+                  "value": "true",
+                  "description": "Include rotated/angled text in extraction."
+                },
+                {
+                  "disabled": false,
+                  "key": "word_confidence_threshold",
+                  "value": "0.3",
+                  "description": "OCR word confidence filter (0-1)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "a743344c-b538-4706-885a-995d574f65cf",
+              "name": "Whisper job accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "form"
+                    },
+                    {
+                      "key": "output_mode",
+                      "value": "layout_preserving"
+                    },
+                    {
+                      "key": "page_seperator",
+                      "value": "<<<"
+                    },
+                    {
+                      "key": "pages_to_extract",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "median_filter_size",
+                      "value": "0"
+                    },
+                    {
+                      "key": "gaussian_blur_radius",
+                      "value": "0"
+                    },
+                    {
+                      "key": "line_splitter_tolerance",
+                      "value": "0.4"
+                    },
+                    {
+                      "key": "line_splitter_strategy",
+                      "value": "left-priority"
+                    },
+                    {
+                      "key": "horizontal_stretch_factor",
+                      "value": "1"
+                    },
+                    {
+                      "key": "url_in_post",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mark_vertical_lines",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mark_horizontal_lines",
+                      "value": "false"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "eng"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "default"
+                    },
+                    {
+                      "key": "file_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_webhook",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "webhook_metadata",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "add_line_nos",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allow_rotated_text",
+                      "value": "true"
+                    },
+                    {
+                      "key": "word_confidence_threshold",
+                      "value": "0.3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Whisper Job Accepted\",\n  \"status\": \"processing\",\n  \"whisper_hash\": \"xxxxx|xxx\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9660ecfe-15bc-4d1d-9a3c-ada898d6cbc0",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "form"
+                    },
+                    {
+                      "key": "output_mode",
+                      "value": "layout_preserving"
+                    },
+                    {
+                      "key": "page_seperator",
+                      "value": "<<<"
+                    },
+                    {
+                      "key": "pages_to_extract",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "median_filter_size",
+                      "value": "0"
+                    },
+                    {
+                      "key": "gaussian_blur_radius",
+                      "value": "0"
+                    },
+                    {
+                      "key": "line_splitter_tolerance",
+                      "value": "0.4"
+                    },
+                    {
+                      "key": "line_splitter_strategy",
+                      "value": "left-priority"
+                    },
+                    {
+                      "key": "horizontal_stretch_factor",
+                      "value": "1"
+                    },
+                    {
+                      "key": "url_in_post",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mark_vertical_lines",
+                      "value": "false"
+                    },
+                    {
+                      "key": "mark_horizontal_lines",
+                      "value": "false"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "eng"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "default"
+                    },
+                    {
+                      "key": "file_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_webhook",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "webhook_metadata",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "add_line_nos",
+                      "value": "false"
+                    },
+                    {
+                      "key": "allow_rotated_text",
+                      "value": "true"
+                    },
+                    {
+                      "key": "word_confidence_threshold",
+                      "value": "0.3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://llmwhisperer-api.us-central.unstract.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "unstract-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "20eb9a0a-36e0-47aa-ac49-6b2008885eee",
+    "name": "LLMWhisperer Extraction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.\n\nContact Support:\n Name: Unstract Support",
+      "type": "text/plain"
+    }
+  }
+}

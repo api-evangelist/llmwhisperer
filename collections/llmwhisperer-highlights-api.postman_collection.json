@@ -1,0 +1,201 @@
+{
+  "item": [
+    {
+      "id": "fcf74350-af2f-4a8e-bb03-044a67af4208",
+      "name": "Highlights",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72acd48b-dfc0-421a-9468-e8fa747eaa80",
+          "name": "Retrieve per-line bounding-box coordinates",
+          "request": {
+            "name": "Retrieve per-line bounding-box coordinates",
+            "description": {
+              "content": "Returns bounding-box metadata for the requested lines so callers can highlight extracted text in the source document. Requires the whisper job to have been submitted with add_line_nos enabled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "highlights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "whisper_hash",
+                  "value": "<string>",
+                  "description": "(Required) The whisper hash returned when the whisper job was started."
+                },
+                {
+                  "disabled": false,
+                  "key": "lines",
+                  "value": "<string>",
+                  "description": "(Required) Lines to retrieve, e.g. \"1-5,7,21-\"."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4360807f-04f0-4b48-9a72-9322ba6165a5",
+              "name": "Map of line number to bounding-box metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "highlights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lines",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"base_y\": 9682,\n    \"base_y_percent\": 1269.894185878415,\n    \"height\": 2907,\n    \"height_percent\": 1359.0178073151683,\n    \"page\": 9331,\n    \"page_height\": 698,\n    \"raw\": [\n      3531,\n      4278\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e7f9543-2708-45f6-ae7d-f76ad651d390",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "highlights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lines",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://llmwhisperer-api.us-central.unstract.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "unstract-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "056a2e86-92af-4a6e-8165-d434308d6dd6",
+    "name": "LLMWhisperer Extraction Highlights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.\n\nContact Support:\n Name: Unstract Support",
+      "type": "text/plain"
+    }
+  }
+}

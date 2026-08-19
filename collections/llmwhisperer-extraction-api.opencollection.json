@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLMWhisperer Extraction API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "unstract-key",
+      "value": "{{unstract-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extraction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a document for text extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/whisper",
+            "params": [
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Extraction mode."
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Output formatting mode."
+              },
+              {
+                "name": "page_seperator",
+                "value": "",
+                "type": "query",
+                "description": "Page delimiter string inserted between pages."
+              },
+              {
+                "name": "pages_to_extract",
+                "value": "",
+                "type": "query",
+                "description": "Pages to extract, e.g. \"1-5,7,21-\"."
+              },
+              {
+                "name": "median_filter_size",
+                "value": "",
+                "type": "query",
+                "description": "Median filter size for low_cost mode noise removal."
+              },
+              {
+                "name": "gaussian_blur_radius",
+                "value": "",
+                "type": "query",
+                "description": "Gaussian blur radius for low_cost mode noise removal."
+              },
+              {
+                "name": "line_splitter_tolerance",
+                "value": "",
+                "type": "query",
+                "description": "Baseline factor for line splitting (fraction of line height)."
+              },
+              {
+                "name": "line_splitter_strategy",
+                "value": "",
+                "type": "query",
+                "description": "Line splitting strategy."
+              },
+              {
+                "name": "horizontal_stretch_factor",
+                "value": "",
+                "type": "query",
+                "description": "Horizontal stretch factor for multi-column layout adjustment."
+              },
+              {
+                "name": "url_in_post",
+                "value": "",
+                "type": "query",
+                "description": "When true, the request body is a document URL instead of binary data."
+              },
+              {
+                "name": "mark_vertical_lines",
+                "value": "",
+                "type": "query",
+                "description": "Reproduce vertical layout lines in the output."
+              },
+              {
+                "name": "mark_horizontal_lines",
+                "value": "",
+                "type": "query",
+                "description": "Reproduce horizontal layout lines in the output."
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language hint for OCR (ISO 639-2/B, e.g. eng)."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Auditing label associated with the request."
+              },
+              {
+                "name": "file_name",
+                "value": "",
+                "type": "query",
+                "description": "Auditing reference file name."
+              },
+              {
+                "name": "use_webhook",
+                "value": "",
+                "type": "query",
+                "description": "Name of a registered webhook to deliver the result to."
+              },
+              {
+                "name": "webhook_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Metadata echoed back to the webhook with the result."
+              },
+              {
+                "name": "add_line_nos",
+                "value": "",
+                "type": "query",
+                "description": "Enable line numbering and persist line metadata for highlights."
+              },
+              {
+                "name": "allow_rotated_text",
+                "value": "",
+                "type": "query",
+                "description": "Include rotated/angled text in extraction."
+              },
+              {
+                "name": "word_confidence_threshold",
+                "value": "",
+                "type": "query",
+                "description": "OCR word confidence filter (0-1)."
+              }
+            ]
+          },
+          "docs": "Converts a document to text. Accepts the raw document as binary (application/octet-stream) or, when url_in_post is true, a URL in the request body. Processing is asynchronous; a whisper_hash is returned to track and retrieve the job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

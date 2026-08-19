@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "4b4763f5-ebb1-4051-997f-351aa5d5118b",
+      "name": "Retrieve",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "313ff561-1fdc-4d08-93ca-be96d4be6976",
+          "name": "Retrieve the extracted text of a processed whisper job",
+          "request": {
+            "name": "Retrieve the extracted text of a processed whisper job",
+            "description": {
+              "content": "Returns the extracted text once the job is processed. For security and privacy, the extracted text can be retrieved only once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whisper-retrieve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "whisper_hash",
+                  "value": "<string>",
+                  "description": "(Required) The whisper hash returned when the whisper job was started."
+                },
+                {
+                  "disabled": false,
+                  "key": "text_only",
+                  "value": "false",
+                  "description": "When true, returns only the extracted text without metadata."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30758a1f-58d3-400d-9378-69953586352d",
+              "name": "Extracted text and metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper-retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "text_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result_text\": \"string\",\n  \"confidence_metadata\": [\n    [],\n    []\n  ],\n  \"webhook_metadata\": \"string\",\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6e63c78-2893-4b6f-953e-f64cc517cefc",
+              "name": "Retrieval error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper-retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "text_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "556e5804-8b3a-4cfc-ba10-35714f5fe965",
+              "name": "Invalid whisper hash.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whisper-retrieve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "whisper_hash",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "text_only",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "unstract-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://llmwhisperer-api.us-central.unstract.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "unstract-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ccf7dd5-acf1-4980-b11f-ef5dc6c588ad",
+    "name": "LLMWhisperer Extraction Retrieve API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LLMWhisperer (by Unstract / Zipstack) is a document-to-text extraction API that converts PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. The v2 API is asynchronous: submit a document to POST /whisper, poll GET /whisper-status, then fetch the result with GET /whisper-retrieve. GET /highlights returns per-line bounding-box coordinates and /whisper-manage-callback manages webhook callbacks. All requests authenticate with the unstract-key header.\n\nContact Support:\n Name: Unstract Support",
+      "type": "text/plain"
+    }
+  }
+}

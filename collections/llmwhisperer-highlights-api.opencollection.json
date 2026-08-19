@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLMWhisperer Extraction Highlights API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "unstract-key",
+      "value": "{{unstract-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Highlights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve per-line bounding-box coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://llmwhisperer-api.us-central.unstract.com/api/v2/highlights",
+            "params": [
+              {
+                "name": "whisper_hash",
+                "value": "",
+                "type": "query",
+                "description": "The whisper hash returned when the whisper job was started."
+              },
+              {
+                "name": "lines",
+                "value": "",
+                "type": "query",
+                "description": "Lines to retrieve, e.g. \"1-5,7,21-\"."
+              }
+            ]
+          },
+          "docs": "Returns bounding-box metadata for the requested lines so callers can highlight extracted text in the source document. Requires the whisper job to have been submitted with add_line_nos enabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
