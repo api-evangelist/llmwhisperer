@@ -23,6 +23,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/llmwhisperer.png
 tags:
+- Artificial Intelligence
+- LLM
+- Document Extraction
+- OCR
+- Text Extraction
+tags_raw:
 - AI
 - LLM
 - Document Extraction
@@ -104,7 +110,8 @@ apis:
   humanURL: >-
     https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/
   baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
-  tags:
+  tags: []
+  tags_raw:
   - Retrieve
   properties:
   - type: OpenAPI
@@ -171,6 +178,8 @@ apis:
     https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/
   baseURL: https://llmwhisperer-api.us-central.unstract.com/api/v2
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
