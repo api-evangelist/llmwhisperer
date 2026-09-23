@@ -1,11 +1,7 @@
 {
   "provider": "llmwhisperer",
   "sources": [
-    "llmwhisperer-extraction-api-openapi.yml",
-    "llmwhisperer-highlights-api-openapi.yml",
-    "llmwhisperer-retrieve-api-openapi.yml",
-    "llmwhisperer-status-api-openapi.yml",
-    "llmwhisperer-webhooks-api-openapi.yml"
+    "_original/llmwhisperer-openapi.yml"
   ],
   "outputs": [
     "llmwhisperer-extraction-api-openapi.yml",
@@ -17,6 +13,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "llmwhisperer-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "llmwhisperer-openapi.yml: declared missing tag: Extraction",
+    "llmwhisperer-openapi.yml: declared missing tag: Highlights",
+    "llmwhisperer-openapi.yml: declared missing tag: Retrieve",
+    "llmwhisperer-openapi.yml: declared missing tag: Status",
+    "llmwhisperer-openapi.yml: declared missing tag: Webhooks",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "llmwhisperer-extraction-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "llmwhisperer-highlights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "llmwhisperer-retrieve-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "llmwhisperer-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "llmwhisperer-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
