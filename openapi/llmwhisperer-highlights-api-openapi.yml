@@ -52,11 +52,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     HighlightLine:
       type: object
       properties:
@@ -77,6 +72,11 @@ components:
           description: '[page_no, y, height, page_height]'
           items:
             type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     HighlightsResponse:
       type: object
       additionalProperties:
