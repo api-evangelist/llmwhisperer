@@ -176,11 +176,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     WhisperAccepted:
       type: object
       properties:
@@ -193,6 +188,11 @@ components:
         whisper_hash:
           type: string
           example: xxxxx|xxx
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     unstractKey:
       type: apiKey

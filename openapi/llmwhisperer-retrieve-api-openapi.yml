@@ -61,11 +61,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     WhisperResult:
       type: object
       properties:
@@ -85,6 +80,11 @@ components:
         metadata:
           type: object
           description: Reserved for future use.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     unstractKey:
       type: apiKey

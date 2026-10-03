@@ -72,15 +72,15 @@ components:
           description: '[page_no, y, height, page_height]'
           items:
             type: integer
+    HighlightsResponse:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/HighlightLine'
     Error:
       type: object
       properties:
         message:
           type: string
-    HighlightsResponse:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/HighlightLine'
   securitySchemes:
     unstractKey:
       type: apiKey

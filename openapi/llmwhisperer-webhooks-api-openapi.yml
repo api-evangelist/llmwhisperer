@@ -87,11 +87,6 @@ paths:
           description: Webhook deleted.
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     WebhookConfig:
       type: object
       required:
@@ -107,6 +102,11 @@ components:
         webhook_name:
           type: string
           description: Identifier used to reference this webhook in use_webhook.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     unstractKey:
       type: apiKey
