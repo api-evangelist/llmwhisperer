@@ -52,6 +52,11 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     HighlightLine:
       type: object
       properties:
@@ -76,11 +81,6 @@ components:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/HighlightLine'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
   securitySchemes:
     unstractKey:
       type: apiKey

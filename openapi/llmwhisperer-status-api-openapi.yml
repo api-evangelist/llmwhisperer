@@ -45,6 +45,11 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     WhisperStatus:
       type: object
       properties:
@@ -69,11 +74,6 @@ components:
                 type: string
               execution_time_in_seconds:
                 type: number
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
   securitySchemes:
     unstractKey:
       type: apiKey
