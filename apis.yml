@@ -219,6 +219,8 @@ apis:
   - type: Review
     url: review.yml
 common:
+- type: Pricing
+  url: https://unstract.com/pricing/
 - type: AgenticAccess
   url: agentic-access/llmwhisperer-agentic-access.yml
 - type: DomainSecurity
