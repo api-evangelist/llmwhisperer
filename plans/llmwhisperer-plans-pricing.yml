@@ -1,131 +1,217 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: LLMWhisperer
-providerId: llmwhisperer
-created: '2026-06-20'
-modified: '2026-06-20'
-reconciled: true
-tags:
-- AI
-- LLM
-- Document Extraction
-- OCR
-- Text Extraction
-- Plans
-description: >-
-  LLMWhisperer uses simple pay-as-you-go pricing metered by pages processed,
-  with no flat monthly fee or upfront commitment. A free tier processes up to
-  100 pages per day at no cost and requires no credit card. Paid usage is
-  priced per 1,000 pages and varies by extraction mode, ranging from roughly
-  $1 per 1,000 pages (native_text) up to roughly $15 per 1,000 pages (high
-  quality with form/table elements). Self-hosted / on-premise deployment is
-  available via an Enterprise plan.
-notes: >-
-  Per-mode per-page rates are as published on the Unstract / LLMWhisperer
-  pricing page; verify the current free-tier allowance and exact per-mode
-  rates on the pricing page during reconciliation.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://unstract.com/pricing/
 sources:
 - https://unstract.com/pricing/
-- https://unstract.com/llmwhisperer/
-- https://docs.unstract.com/llmwhisperer/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T112025
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: LLMWhisperer On-Prem Enterprise Self-host inside your VPC
+  managed_tier: Starter
+published: true
+note: Combined pricing page for Unstract platform (tiered monthly/annual with page overages) and LLMWhisperer
+  per-page OCR modes; Enterprise self-hosted offered via sales.
+plan_count: 12
+currency: USD
 plans:
-- id: llmwhisperer-free
-  name: Free
-  type: free
-  description: >-
-    Process up to 100 pages per day at no cost. No credit card required.
-  entries:
-  - label: Free Pages
-    name: free_pages
-    type: free
-    metric: pages
-    limit: 100
-    timeFrame: day
-    geo: global
-    unit: 1
-    price: $0.00
-    userMultiplied: false
-  elements:
-  - name: Whisper Extraction
-  - name: Whisper Status
-  - name: Whisper Retrieve
-  - name: Highlights
-  - name: Webhooks
-- id: llmwhisperer-pay-as-you-go
-  name: Pay-as-you-go
-  type: usage
-  description: >-
-    Per-page usage billing across the four extraction modes with no monthly
-    minimum.
-  entries:
-  - label: Native Text
-    name: native_text
-    type: usage
-    metric: pages
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1000
-    price: from ~$1 per 1,000 pages
-    userMultiplied: false
-  - label: Low Cost
-    name: low_cost
-    type: usage
-    metric: pages
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1000
-    price: see pricing page (per 1,000 pages)
-    userMultiplied: false
-  - label: High Quality
-    name: high_quality
-    type: usage
-    metric: pages
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1000
-    price: see pricing page (per 1,000 pages)
-    userMultiplied: false
-  - label: High Quality with Form / Table Elements
-    name: high_quality_form
-    type: usage
-    metric: pages
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1000
-    price: up to ~$15 per 1,000 pages
-    userMultiplied: false
-  elements:
-  - name: Whisper Extraction
-  - name: Whisper Status
-  - name: Whisper Retrieve
-  - name: Highlights
-  - name: Webhooks
-- id: llmwhisperer-enterprise
-  name: Enterprise
-  type: enterprise
-  description: >-
-    Self-hosted / on-premise deployment of LLMWhisperer, volume pricing,
-    dedicated support, and negotiated terms. Contact Unstract sales.
-  entries:
-  - label: Enterprise Agreement
-    name: enterprise
-    type: flat
-    metric: contract
-    limit: -1
-    timeFrame: year
-    geo: global
-    unit: 1
-    price: contact sales
-    userMultiplied: false
-  elements:
-  - name: Self-Hosted / On-Premise
-  - name: Custom Volume Pricing
-  - name: Dedicated Support
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+- name: Unstract Starter (monthly)
+  price_text: $499 / month
+  price: 499
+  currency: USD
+  period: month
+  unit: pages
+  included_quota: Pages / month 5,000
+  overage: $0.10 / page
+- name: Unstract Growth (monthly)
+  price_text: $2,249 / month
+  price: 2249
+  currency: USD
+  period: month
+  unit: pages
+  included_quota: Pages / month 25,000
+  overage: $0.09 / page
+- name: Unstract Enterprise
+  price_text: Custom
+  period: none
+  included_quota: Pages / month Custom
+  overage: Custom
+- name: Unstract Starter (annual)
+  price_text: $416 / month
+  price: 416
+  currency: USD
+  period: month
+  unit: pages
+  included_quota: Pages / year 60,000
+  overage: $0.10 / page
+- name: Unstract Growth (annual)
+  price_text: $1,874 / month
+  price: 1874
+  currency: USD
+  period: month
+  unit: pages
+  included_quota: Pages / year 300,000
+  overage: $0.09 / page
+- name: LLMWhisperer Native Text
+  price_text: $ 1 / 1000 pages
+  price: 1
+  currency: USD
+  period: per-use
+  unit: 1000 pages
+  included_quota: $0.001 per page
+- name: LLMWhisperer Low Cost
+  price_text: $ 5 / 1000 pages
+  price: 5
+  currency: USD
+  period: per-use
+  unit: 1000 pages
+  included_quota: $0.005 per page
+- name: LLMWhisperer High Quality
+  price_text: $ 10 / 1000 pages
+  price: 10
+  currency: USD
+  period: per-use
+  unit: 1000 pages
+  included_quota: $0.01 per page
+- name: LLMWhisperer High Quality + Form/Table
+  price_text: $ 15 / 1000 pages
+  price: 15
+  currency: USD
+  period: per-use
+  unit: 1000 pages
+  included_quota: $0.015 per page
+- name: Source Document Highlighting (add-on)
+  price_text: $0.01 / line coordinate lookup
+  price: 0.01
+  currency: USD
+  period: per-use
+  unit: line coordinate lookup
+  included_quota: across all modes
+- name: LLMWhisperer Free tier
+  price_text: 100 pages a day, on every mode
+  price: 100
+  period: per-use
+  unit: pages/day
+  included_quota: No credit card required
+  overage: pay for the pages you process at the per-page rate above
+- name: LLMWhisperer On-Prem Enterprise
+  price_text: Get in touch
+  period: none
+  included_quota: Self-host inside your VPC
+rate_limit_statements:
+- Free tier 100 pages a day, on every mode
+- There is no monthly cap. After the free 100 pages a day, pay-as-you-go kicks in at the per-page rate
+  for your mode.
+- Rate limits apply at the API level (to keep the service fair for all users), but they sit above what
+  production workloads need.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  - subscription
+  units:
+  - object
+  plans:
+  - name: Unstract Starter (monthly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Unstract Growth (monthly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Unstract Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Unstract Starter (annual)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Unstract Growth (annual)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: LLMWhisperer Native Text
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: LLMWhisperer Low Cost
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: LLMWhisperer High Quality
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: LLMWhisperer High Quality + Form/Table
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Source Document Highlighting (add-on)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: LLMWhisperer Free tier
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: LLMWhisperer On-Prem Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
