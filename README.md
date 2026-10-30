@@ -1,4 +1,4 @@
-# LLMWhisperer (llmwhisperer)
+# LLMWhisperer
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,136 +66,125 @@
 
 LLMWhisperer is a document-to-text extraction API from Unstract (Zipstack) that turns complex PDFs, scanned documents, and images into clean, layout-preserving text ready for large language models. It exposes an asynchronous REST API (v2) - submit a document to /whisper, poll /whisper-status, then retrieve the extracted text via /whisper-retrieve - plus line-level highlight coordinates and webhook callbacks. Authentication is via the unstract-key header.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/llmwhisperer/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/llmwhisperer/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Document Extraction · OCR · Text Extraction
 
-## Tags
+## LLMWhisperer on APIs.io
 
-- AI
-- LLM
-- Document Extraction
-- OCR
-- Text Extraction
+Everything profiled for LLMWhisperer is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/llmwhisperer/](https://apis.io/providers/llmwhisperer/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [LLMWhisperer Extraction API](https://apis.io/apis/llmwhisperer/llmwhisperer-extraction-api/) — The Extraction API from LLMWhisperer — 1 operation(s) for extraction.
+- [LLMWhisperer Highlights API](https://apis.io/apis/llmwhisperer/llmwhisperer-highlights-api/) — The Highlights API from LLMWhisperer — 1 operation(s) for highlights.
+- [LLMWhisperer Retrieve API](https://apis.io/apis/llmwhisperer/llmwhisperer-retrieve-api/) — The Retrieve API from LLMWhisperer — 1 operation(s) for retrieve.
+- [LLMWhisperer Status API](https://apis.io/apis/llmwhisperer/llmwhisperer-status-api/) — The Status API from LLMWhisperer — 1 operation(s) for status.
+- [LLMWhisperer Webhooks API](https://apis.io/apis/llmwhisperer/llmwhisperer-webhooks-api/) — The Webhooks API from LLMWhisperer — 1 operation(s) for webhooks.
 
-## APIs
+### Published properties
 
-### LLMWhisperer Whisper Extraction API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Submits a document (PDF, image, or URL) to POST /whisper for asynchronous, layout-preserving text extraction across native_text, low_cost, high_quality, form, and table modes. Returns a 202 with a whisper_hash used to track and retrieve the job.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/)
-- **Base URL:** `https://llmwhisperer-api.us-central.unstract.com/api/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Llmwhisperer Agentic Access](https://apis.io/agentic-access/llmwhisperer/llmwhisperer-agentic-access/)
 
-- Extraction
-- OCR
-- Layout Preserving
+#### Collections (6)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_api/)
-- [API Reference](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_apis_intro/)
-- [OpenAPI](openapi/llmwhisperer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llmwhisperer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llmwhisperer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [LLMWhisperer API](https://apis.io/collections/llmwhisperer/open-llmwhisperer/)
+- [LLMWhisperer Extraction API](https://apis.io/collections/llmwhisperer/open-llmwhisperer-extraction-api/)
+- [LLMWhisperer Extraction Highlights API](https://apis.io/collections/llmwhisperer/open-llmwhisperer-highlights-api/)
+- [LLMWhisperer Extraction Retrieve API](https://apis.io/collections/llmwhisperer/open-llmwhisperer-retrieve-api/)
+- [LLMWhisperer Extraction Status API](https://apis.io/collections/llmwhisperer/open-llmwhisperer-status-api/)
+- [LLMWhisperer Extraction Webhooks API](https://apis.io/collections/llmwhisperer/open-llmwhisperer-webhooks-api/)
 
-### LLMWhisperer Whisper Status API
+#### Security (2)
 
-GET /whisper-status returns the processing state (accepted, processing, processed, error, retrieved) for a whisper_hash, with per-page execution detail.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_status_api/](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_status_api/)
-- **Base URL:** `https://llmwhisperer-api.us-central.unstract.com/api/v2`
+- [Llmwhisperer Authentication](https://apis.io/security/llmwhisperer/llmwhisperer-authentication/)
+- [Llmwhisperer Domain Security](https://apis.io/security/llmwhisperer/llmwhisperer-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Status
-- Async
-- Polling
+Published plans, tiers and prices.
 
-#### Properties
+- [Llmwhisperer Plans Pricing](https://apis.io/plans/llmwhisperer/llmwhisperer-plans-pricing/)
 
-- [Documentation](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_status_api/)
-- [OpenAPI](openapi/llmwhisperer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llmwhisperer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llmwhisperer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### LLMWhisperer Whisper Retrieve API
+Published request limits.
 
-GET /whisper-retrieve returns the extracted result_text plus optional confidence_metadata for a processed whisper_hash. Results can be retrieved once.
+- [Llmwhisperer Rate Limits](https://apis.io/rate-limits/llmwhisperer/llmwhisperer-rate-limits/)
 
-- **Human URL:** [https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_retrieve_api/](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_retrieve_api/)
-- **Base URL:** `https://llmwhisperer-api.us-central.unstract.com/api/v2`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Retrieve
-- Results
-- Text
+- [Llmwhisperer Finops](https://apis.io/finops/llmwhisperer/llmwhisperer-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_text_extraction_retrieve_api/)
-- [OpenAPI](openapi/llmwhisperer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llmwhisperer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llmwhisperer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### LLMWhisperer Highlights API
-
-GET /highlights returns per-line bounding-box coordinates (base_y, height, page, page_height) for the requested lines so callers can highlight extracted text in the source document.
-
-- **Human URL:** [https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_highlighting_api/](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_highlighting_api/)
-- **Base URL:** `https://llmwhisperer-api.us-central.unstract.com/api/v2`
-
-#### Tags
-
-- Highlights
-- Bounding Box
-- Coordinates
-
-#### Properties
-
-- [Documentation](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_highlighting_api/)
-- [OpenAPI](openapi/llmwhisperer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llmwhisperer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llmwhisperer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LLMWhisperer Webhooks API
-
-Register and manage webhook callbacks via /whisper-manage-callback (POST/GET/PUT/DELETE). Submit a document with use_webhook to have the extracted result delivered to your endpoint instead of polling.
-
-- **Human URL:** [https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_webhooks_manage/](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_webhooks_manage/)
-- **Base URL:** `https://llmwhisperer-api.us-central.unstract.com/api/v2`
-
-#### Tags
-
-- Webhooks
-- Callbacks
-- Async
-
-#### Properties
-
-- [Documentation](https://docs.unstract.com/llmwhisperer/llm_whisperer/apis/llm_whisperer_webhooks_manage/)
-- [OpenAPI](openapi/llmwhisperer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Review](review.yml)
-- [Postman Collection](collections/llmwhisperer.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llmwhisperer.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/Zipstack)
-- [LinkedIn](https://www.linkedin.com/company/unstract)
 - [Website](https://unstract.com/llmwhisperer/)
 - [Documentation](https://docs.unstract.com/llmwhisperer/)
-- [Plans](plans/llmwhisperer-plans-pricing.yml)
-- [Rate Limits](rate-limits/llmwhisperer-rate-limits.yml)
-- [Fin Ops](finops/llmwhisperer-finops.yml)
+- [Pricing](https://unstract.com/pricing/)
+- [Blog](https://unstract.com/feed/)
+- [GitHub](https://github.com/Zipstack)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 51.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 42.1 |
+
+**Agent readiness 25.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/llmwhisperer/](https://apis.io/providers/llmwhisperer/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for LLMWhisperer: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/llmwhisperer/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
